@@ -28,7 +28,7 @@ public:
 
 	double Length()
 	{
-		return sqrt(x * x + y * y + z * z);
+		return sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2));
 	}
 };
 
@@ -37,7 +37,7 @@ int main()
 	Vector temp(10, 16, 23);
 	temp.Show();
 	std::cout << "Vector length: " << temp.Length() << '\n';
-	temp.Set(2, 2, 2);
+	temp.Set(-3, -4, -5);
 	temp.Show();
 	std::cout << "Vector length: " << temp.Length() << '\n';
 }

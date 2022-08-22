@@ -1,32 +1,43 @@
 ﻿#include <iostream>
-#include <time.h>
+
+class Vector
+{
+private:
+	double x;
+	double y;
+	double z;
+
+public:
+	Vector() : x(0), y(0), z(0)
+	{}
+
+	Vector(double _x, double _y, double _z) : x(_x), y(_y), z(_z)
+	{}
+
+	void Set(double _x, double _y, double _z)
+	{
+		x = _x;
+		y = _y;
+		z = _z;
+	}
+
+	void Show() 
+	{
+		std::cout << x << ' ' << y << ' ' << z << '\n';
+	}
+
+	double Length()
+	{
+		return sqrt(x * x + y * y + z * z);
+	}
+};
 
 int main()
 {
-	struct tm buf;
-	time_t t = time(NULL);
-	localtime_s(&buf, &t);
-
-	const int n = 5;
-	int arr[n][n];
-
-	std::cout << "Generated array:\n";
-	for (int i = 0; i < n; i++)
-	{
-		for (int j = 0; j < n; j++)
-		{
-			arr[i][j] = i + j;
-			std::cout << arr[i][j] << " ";
-		}
-		std::cout << '\n';
-	}
-
-	int sum = 0;
-	int lineNumber = buf.tm_mday % n;
-
-	for (int num : arr[lineNumber])
-		sum += num;
-
-	std::cout << "Line number: " << lineNumber << '\n';
-	std::cout << "Line sum: " << sum << '\n';
+	Vector temp(10, 16, 23);
+	temp.Show();
+	std::cout << "Vector length: " << temp.Length() << '\n';
+	temp.Set(2, 2, 2);
+	temp.Show();
+	std::cout << "Vector length: " << temp.Length() << '\n';
 }

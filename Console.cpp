@@ -1,43 +1,41 @@
 ﻿#include <iostream>
+using namespace std;
 
-class Vector
+class Stack
 {
 private:
-	double x;
-	double y;
-	double z;
+	int size = 0;
+	int* pInt = new int[size];
 
 public:
-	Vector() : x(0), y(0), z(0)
-	{}
-
-	Vector(double _x, double _y, double _z) : x(_x), y(_y), z(_z)
-	{}
-
-	void Set(double _x, double _y, double _z)
+	/*~Stack()
 	{
-		x = _x;
-		y = _y;
-		z = _z;
+		delete pInt;
+	}*/
+	void Push(int val)
+	{
+		size += 1;
+		*(pInt + size - 1) = val;
 	}
 
-	void Show() 
+	int Pop()
 	{
-		std::cout << x << ' ' << y << ' ' << z << '\n';
-	}
-
-	double Length()
-	{
-		return sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2));
+		return size> 0 ? *(pInt + size - 1) : 0;
 	}
 };
 
 int main()
 {
-	Vector temp(10, 16, 23);
-	temp.Show();
-	std::cout << "Vector length: " << temp.Length() << '\n';
-	temp.Set(-3, -4, -5);
-	temp.Show();
-	std::cout << "Vector length: " << temp.Length() << '\n';
+	Stack* arr = new Stack;
+	
+	arr->Push(11);
+	cout << "First push \t" << arr->Pop() << '\n';
+	
+	arr->Push(22);
+	cout << "Second push \t" << arr->Pop() << '\n';
+
+	arr->Push(33);
+	cout << "Third push \t" << arr->Pop() << '\n';
+
+	delete arr;
 }
